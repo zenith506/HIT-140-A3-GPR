@@ -5,12 +5,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
-# Load the datasets using your local file paths
+# Loading the dataset
 dataset1 = pd.read_csv(r'C:\Users\A Plus\Downloads\dataset1.csv')
 dataset2 = pd.read_csv(r'C:\Users\A Plus\Downloads\dataset2.csv')
 dataset3 = pd.read_csv(r'C:\Users\A Plus\Downloads\dataset3.csv')
 
-# Merging dataset2 and dataset3 on the ID column for correlation analysis
+# Merging dataset2 and dataset3 for correlation analysis
 merged_data = pd.merge(dataset2, dataset3, on='ID')
 
 # Data visualization
@@ -33,7 +33,7 @@ plt.show()
 X = merged_data[['C_we', 'C_wk', 'G_we', 'G_wk', 'S_we', 'S_wk', 'T_we', 'T_wk']]
 y = merged_data[['Optm', 'Usef', 'Relx', 'Intp', 'Engs', 'Dealpr', 'Thcklr', 'Goodme', 'Clsep', 'Conf', 'Mkmind', 'Loved', 'Intthg', 'Cheer']]
 
-# Splitting the data
+# Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Linear regression model
@@ -42,7 +42,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 
-# Displaying the results
+# Display the results
 print(f'Mean Squared Error: {mse}')
 coefficients = pd.DataFrame(model.coef_, columns=X.columns)
 print(coefficients)
